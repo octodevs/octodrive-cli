@@ -790,7 +790,7 @@ packages:
     dev: true
 
   /@octodevs/octodrive-sdk/0.2.0:
-    resolution: {integrity: sha512-XdnJtGYlDln2gMBII4chGCzEMXla5GcVkOVQlPYHYAcv9sBq5P+co7FeBqDmzR+MuE5zDuz9dmQRipLQkzvO0Q==, tarball: download/@octodevs/octodrive-sdk/0.2.0/b366ae7041f05d235e7f40a2b947826bf99305c5}
+    resolution: {integrity: sha512-XdnJtGYlDln2gMBII4chGCzEMXla5GcVkOVQlPYHYAcv9sBq5P+co7FeBqDmzR+MuE5zDuz9dmQRipLQkzvO0Q==}
     dependencies:
       crypto-js: 4.1.1
     dev: false
