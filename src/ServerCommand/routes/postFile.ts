@@ -1,7 +1,8 @@
-import { join } from 'path'
+import { dirname, join } from 'path'
 import { randomBytes } from 'crypto'
-import { writeFile } from 'fs/promises'
+import { mkdir, writeFile } from 'fs/promises'
 import type { FastifyReply, FastifyRequest } from 'fastify'
+import { existsSync } from 'fs'
 
 const postFile =
   (storagePath: string) =>
@@ -48,6 +49,8 @@ const postFile =
     }
 
     const filePath = join(...fileRawPath)
+
+    await ensureDirectoryExistence(filePath)
     await writeFile(filePath, file.file)
 
     void reply
@@ -58,5 +61,16 @@ const postFile =
         path: fileRawPath[fileRawPath.length - 1],
       })
   }
+
+const ensureDirectoryExistence = async (filePath: string): Promise<void> => {
+  const dir = dirname(filePath)
+
+  if (existsSync(dir)) {
+    return
+  }
+
+  await ensureDirectoryExistence(dir)
+  await mkdir(dir)
+}
 
 export default postFile
