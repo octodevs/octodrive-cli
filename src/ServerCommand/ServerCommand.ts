@@ -4,6 +4,7 @@ import fastifyMultipart from '@fastify/multipart'
 import { FILE_API_ENDPOINT } from '@octodevs/octodrive-sdk'
 import postFile from './routes/postFile'
 import deleteFile from './routes/deleteFile'
+import { resolve } from 'path'
 
 export class ServerCommand {
   private readonly server = fastify({ logger: true })
@@ -17,7 +18,7 @@ export class ServerCommand {
   public run(): void {
     void this.server.register(fastifyMultipart)
     void this.server.register(fastifyStatic, {
-      root: this.storagePath,
+      root: resolve(this.storagePath),
     })
 
     void this.server.post(FILE_API_ENDPOINT(), postFile(this.storagePath))
